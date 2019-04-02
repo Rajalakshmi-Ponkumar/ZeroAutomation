@@ -7,7 +7,7 @@
       <class name="com.zero.script.AutomationScript">
         <methods>
           <include name="initializedriver"/>
-          <include name="TC08B_AddNewOrganisation"/>
+          <include name="TC08C_AddNewOrganisation"/>
         </methods>
       </class> <!-- com.zero.script.AutomationScript -->
     </classes>

@@ -40,7 +40,10 @@ public class AddOrganisationModule extends BaseSeleniumTest{
 		entertext(timezone,zone, "Time zone");
 		WebElement type=findElement(By.xpath("//input[@id='industrysearchcombofield-1025-inputEl']"),"Type");
 		entertext(type,orgtype,"Type");
-		type.click();
+		//WebElement typeclick=findElement(By.xpath("/html[1]/body[1]/div[8]/div[1]/div[1]/ul[1]/li[1]"),"Typeclick");
+		//clickobj(typeclick,"Typeclick");
+		
+		
 		Thread.sleep(3000);
 		WebElement software=findElement(By.xpath("//input[@id='combo-1029-inputEl']"),"Software");
 		entertext(software,opt,"Option");				

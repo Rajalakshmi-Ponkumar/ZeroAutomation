@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [ZeroAutomationTest]">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <parameter name="browser" value="Chrome"/>
-  <test name="FirefoxTest(failed)">
-    <parameter name="browser" value="Firefox"/>
+  <test name="Default test(failed)">
     <classes>
       <class name="com.zero.script.AutomationScript">
         <methods>
-          <include name="TC01_NavigatetozeroValidCredientials"/>
+          <include name="initializedriver"/>
+          <include name="TC08C_AddNewOrganisation"/>
         </methods>
       </class> <!-- com.zero.script.AutomationScript -->
     </classes>
-  </test> <!-- FirefoxTest(failed) -->
-  <test name="ChromeTest(failed)">
-    <parameter name="browser" value="Chrome"/>
-    <classes>
-      <class name="com.zero.script.AutomationScript">
-        <methods>
-          <include name="TC01_NavigatetozeroValidCredientials"/>
-        </methods>
-      </class> <!-- com.zero.script.AutomationScript -->
-    </classes>
-  </test> <!-- ChromeTest(failed) -->
-</suite> <!-- Failed suite [ZeroAutomationTest] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
