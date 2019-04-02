@@ -7,14 +7,16 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
+import com.zero.modules.AddOrganisationModule;
 import com.zero.modules.LoginModule;
 import com.zero.modules.SignUpModule;
 
 public class AutomationScript extends BaseSeleniumTest{
 	LoginModule loginobj=new LoginModule();
 	SignUpModule signobj= new SignUpModule();
+	AddOrganisationModule addobj=new AddOrganisationModule();
 	SoftAssert softassert = new SoftAssert();
-	@BeforeTest
+	@BeforeMethod
 	@Parameters("browser")
 	public void initializedriver(String browser) throws Exception
 	{
@@ -146,15 +148,15 @@ Click the Get Started Button without select the term and policy checkbox
 public void TC02B_Signup() throws InterruptedException
 {
 	signobj.launchurl();
-	startreport("Test case 2B started","Report6.html");
-	WebElement start = findElement(By.xpath("//span[@class='g-recaptcha-submit']")," Get Started");
-	clickobj(start,"Get started");	
+	startreport("Test case 2B started","Report6.html");	
 	String FirName=excelobj.getdata(1,2,1);
 	String LasName=excelobj.getdata(1,2,2);
 	String EmailAdd=excelobj.getdata(1,2,3);
 	String PhoneNO=excelobj.getdata(1,2,4);
 	String Coun=excelobj.getdata(1,2,5);
 	signobj.signUp(FirName,LasName,EmailAdd,PhoneNO,Coun);
+	WebElement start = findElement(By.xpath("//span[@class='g-recaptcha-submit']")," Get Started");
+	clickobj(start,"Get started");	
 	WebElement message = findElement(By.xpath("//span[@id='signup-form-error-message-1']"),"Error Message");
 	String actual=message.getText();
 	String expected= excelobj.getdata(1,2,6);
@@ -254,13 +256,15 @@ search
 ?/help 
  */
 @Test(enabled=false)
-public void TC03_CheckAllTabs()
+public void TC03_CheckAllTabs() throws InterruptedException
 {
 	loginobj.launchurl();
+	Thread.sleep(5000);
 	startreport("Test case 3 started","Report10.html");
 	String Un=excelobj.getdata(0,1,1);
 	String pwd=excelobj.getdata(0, 1, 2);
 	loginobj.login(Un,pwd);
+	Thread.sleep(5000);
 	WebElement dashboard = findElement(By.linkText("Dashboard"),"DashBoard");
 	clickobj(dashboard,"Dash Board");
 	WebElement accounts= findElement(By.xpath("//button[contains(text(),'Accounting')]"),"Accounting");
@@ -269,12 +273,32 @@ public void TC03_CheckAllTabs()
 	clickobj(business,"Business");
 	WebElement contact = findElement(By.xpath("//button[contains(text(),'Contacts')]"),"Contacts");
 	clickobj(contact,"Contacts");
+	WebElement selfdown = findElement(By.xpath("//div[@class='xrh-appbutton--body']"),"Self");
+	clickobj(selfdown,"Self");
+	
 	WebElement setting= findElement(By.linkText("Settings"),"Settings");
 	clickobj(setting,"Settings");
+	WebElement selfdown1 = findElement(By.xpath("//div[@class='xrh-appbutton--body']"),"Self");
+	clickobj(selfdown1,"Self");
 	WebElement add= findElement(By.linkText("Add a new organization"),"Add new organisation");
 	clickobj(add,"Add new Organisation");
-	WebElement file= findElement(By.linkText(""),"Settings");
-	clickobj(setting,"Settings");		
+	WebElement logout=findElement(By.linkText("Logout"),"Logout");
+	clickobj(logout,"Logout");
+	loginobj.login(Un,pwd);
+	WebElement selfdown2 = findElement(By.xpath("//div[@class='xrh-appbutton--body']"),"Self");
+	clickobj(selfdown2,"Self");
+	WebElement file= findElement(By.linkText("Files"),"File");
+	clickobj(file,"File");	
+	WebElement notify= findElement(By.xpath("/html[1]/body[1]/div[1]/header[1]/div[1]/ol[2]/li[3]/button[1]/div[1]"),"Notification");
+	clickobj(notify,"Notification");
+	WebElement help= findElement(By.xpath("/html[1]/body[1]/div[1]/header[1]/div[1]/ol[2]/li[4]/button[1]/div[1]"),"Help");
+	clickobj(help,"Help");
+	WebElement search= findElement(By.xpath("/html[1]/body[1]/div[1]/header[1]/div[1]/ol[2]/li[2]/button[1]/div[1]"),"Search");
+	clickobj(search,"Search");
+	quitdriver();	
+	reportclose();
+	
+	
 }
 /*Launch App
 Login to xero
@@ -296,5 +320,57 @@ public void TC04_logout() throws InterruptedException
 	quitdriver();	
 	reportclose();	
 }
+/*Launch App
+Log in
+Go to my Xero
+Add more organizations*/
+@Test(enabled=false)
+public void TC08A_AddNewOrganisation() throws InterruptedException
+{
+	addobj.launchurl();
+	startreport("Test case 8A started","Report12.html");
+	addobj.addOrganisationlogin();
+	String orgName=excelobj.getdata(2,1,1);
+	String taxctry=excelobj.getdata(2, 1, 2);
+	String timeZone=excelobj.getdata(2,1,3);
+	String orgType=excelobj.getdata(2,1,4);
+	String prevsoftware=excelobj.getdata(2,1,5);
+	addobj.addorganisation(orgName, taxctry,timeZone,orgType,prevsoftware);	
+	Thread.sleep(5000);
+	addobj.clickstarttrial();
+	WebElement act=findElement(By.xpath("//span[@class='xrh-appbutton--text']"),"Actual Element");
+	String actual= act.getText();
+	//System.out.println(actual);
+	String expected=excelobj.getdata(2, 1, 6);
+	softassert.assertEquals(actual, expected);
+	quitdriver();	
+	reportclose();		
+}
 
+/*Log in
+Go to my Xero
+Add more organizations
+*/
+@Test(enabled=false)
+public void TC08B_AddNewOrganisation() throws InterruptedException
+{
+	addobj.launchurl();
+	startreport("Test case 8B started","Report13.html");
+	addobj.addOrganisationlogin();
+	String orgName=excelobj.getdata(2,2,1);
+	String taxctry=excelobj.getdata(2, 2, 2);
+	String timeZone=excelobj.getdata(2,2,3);
+	String orgType=excelobj.getdata(2,2,4);
+	String prevsoftware=excelobj.getdata(2,2,5);
+	addobj.addorganisation(orgName, taxctry,timeZone,orgType,prevsoftware);	
+	Thread.sleep(5000);
+	addobj.clickbuynow();
+	WebElement act=findElement(By.xpath("//button[@class='xrh-focusable xrh-tab--body xrh-tab--body-is-selected']"),"Actual Element");
+	String actual= act.getText();
+	System.out.println(actual);
+	String expected=excelobj.getdata(2, 2, 6);
+	softassert.assertEquals(actual, expected);
+	quitdriver();	
+	reportclose();		
+}
 }

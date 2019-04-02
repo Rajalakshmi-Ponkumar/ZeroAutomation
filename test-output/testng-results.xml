@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="ZeroAutomationTest" duration-ms="214744" started-at="2019-04-01T16:45:48Z" finished-at="2019-04-01T16:49:23Z">
+  <suite name="ZeroAutomationTest" duration-ms="163616" started-at="2019-04-02T06:09:36Z" finished-at="2019-04-02T06:12:19Z">
     <groups>
     </groups>
-    <test name="FirefoxTest" duration-ms="72504" started-at="2019-04-01T16:45:48Z" finished-at="2019-04-01T16:47:00Z">
+    <test name="FirefoxTest" duration-ms="102243" started-at="2019-04-02T06:09:36Z" finished-at="2019-04-02T06:11:18Z">
       <class name="com.zero.script.AutomationScript">
-        <test-method status="PASS" signature="initializedriver(java.lang.String)[pri:0, instance:com.zero.script.AutomationScript@1b7cc17c]" name="initializedriver" is-config="true" duration-ms="28073" started-at="2019-04-01T09:45:48Z" finished-at="2019-04-01T09:46:16Z">
+        <test-method status="PASS" signature="initializedriver(java.lang.String)[pri:0, instance:com.zero.script.AutomationScript@131774fe]" name="initializedriver" is-config="true" duration-ms="55578" started-at="2019-04-01T23:09:36Z" finished-at="2019-04-01T23:10:32Z">
           <params>
             <param index="0">
               <value>
@@ -18,15 +18,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initializedriver -->
-        <test-method status="PASS" signature="TC01_NavigatetozeroValidCredientials()[pri:0, instance:com.zero.script.AutomationScript@1b7cc17c]" name="TC01_NavigatetozeroValidCredientials" duration-ms="44417" started-at="2019-04-01T09:46:16Z" finished-at="2019-04-01T09:47:00Z">
+        <test-method status="PASS" signature="TC01_NavigatetozeroValidCredientials()[pri:0, instance:com.zero.script.AutomationScript@131774fe]" name="TC01_NavigatetozeroValidCredientials" duration-ms="46573" started-at="2019-04-01T23:10:32Z" finished-at="2019-04-01T23:11:18Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC01_NavigatetozeroValidCredientials -->
       </class> <!-- com.zero.script.AutomationScript -->
     </test> <!-- FirefoxTest -->
-    <test name="ChromeTest" duration-ms="142183" started-at="2019-04-01T16:47:00Z" finished-at="2019-04-01T16:49:23Z">
+    <test name="ChromeTest" duration-ms="57998" started-at="2019-04-02T06:11:21Z" finished-at="2019-04-02T06:12:19Z">
       <class name="com.zero.script.AutomationScript">
-        <test-method status="PASS" signature="initializedriver(java.lang.String)[pri:0, instance:com.zero.script.AutomationScript@34123d65]" name="initializedriver" is-config="true" duration-ms="11967" started-at="2019-04-01T09:47:00Z" finished-at="2019-04-01T09:47:12Z">
+        <test-method status="PASS" signature="initializedriver(java.lang.String)[pri:0, instance:com.zero.script.AutomationScript@14cd1699]" name="initializedriver" is-config="true" duration-ms="15997" started-at="2019-04-01T23:11:21Z" finished-at="2019-04-01T23:11:37Z">
           <params>
             <param index="0">
               <value>
@@ -37,7 +37,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initializedriver -->
-        <test-method status="PASS" signature="TC01_NavigatetozeroValidCredientials()[pri:0, instance:com.zero.script.AutomationScript@34123d65]" name="TC01_NavigatetozeroValidCredientials" duration-ms="130207" started-at="2019-04-01T09:47:12Z" finished-at="2019-04-01T09:49:23Z">
+        <test-method status="PASS" signature="TC01_NavigatetozeroValidCredientials()[pri:0, instance:com.zero.script.AutomationScript@14cd1699]" name="TC01_NavigatetozeroValidCredientials" duration-ms="41996" started-at="2019-04-01T23:11:37Z" finished-at="2019-04-01T23:12:19Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC01_NavigatetozeroValidCredientials -->

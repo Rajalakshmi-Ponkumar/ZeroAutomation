@@ -29,7 +29,7 @@ public class BaseSeleniumTest {
 	 * Created Date :21-03-3019 
 	 * Last modified date :21-03-2019
 	 */
-	public static void initialize(String browser) throws Exception {
+	public void initialize(String browser) throws Exception {
 		if(browser.equalsIgnoreCase("Firefox"))
 		{
 			System.setProperty("webdriver.gecko.driver","Driver\\geckodriver.exe");		
