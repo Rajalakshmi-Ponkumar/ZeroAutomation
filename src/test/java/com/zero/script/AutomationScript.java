@@ -54,7 +54,7 @@ public class AutomationScript extends BaseSeleniumTest {
 	 * button
 	 * 
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC01A_NavigatetoZeroInvalidPwd() throws InterruptedException {
 		loginobj.launchurl();
 		startreport("Test case 1B started");
@@ -73,7 +73,7 @@ public class AutomationScript extends BaseSeleniumTest {
 	/*
 	 * TC01C Launch App Enter User Name Enter Password Click on Log in button
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC01C_NavigatetoZeroInvalidEmailId() throws InterruptedException {
 		loginobj.launchurl();
 		startreport("Test case 1C started");
@@ -93,7 +93,7 @@ public class AutomationScript extends BaseSeleniumTest {
 	/*
 	 * TCO1D Launch App Click on Forgot password Test Forgot password
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC01D_NavigatetoZeroForgotPassword() throws InterruptedException {
 		loginobj.launchurl();
 		startreport("Test case 1D started");
@@ -118,7 +118,7 @@ public class AutomationScript extends BaseSeleniumTest {
 	 * Enter Email Address Enter Phone number Select Country from the List Box
 	 * Select Terms and policy in the check box Click Get started Button
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC02A_SignupFullDetails() throws Exception {
 		signobj.launchurl();
 		try
@@ -145,7 +145,7 @@ public class AutomationScript extends BaseSeleniumTest {
 	 * any field Enter the Email address in wrong format Click the Get Started
 	 * Button without select the term and policy checkbox
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC02B_Signup() throws InterruptedException {
 		signobj.launchurl();
 		startreport("Test case 2B started");
@@ -169,7 +169,7 @@ public class AutomationScript extends BaseSeleniumTest {
 	 * Launch App Click on FREE TRIAL icon Click the terms of use link Click the
 	 * privacy policy link
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC02C_SignupDetails() throws InterruptedException {
 		ArrayList<String> windows;
 		signobj.launchurl();
@@ -199,7 +199,7 @@ public class AutomationScript extends BaseSeleniumTest {
 	/*
 	 * Launch App Click on FREE TRIAL icon click "See full Offer Details" link
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC02D_SignupOfferDetails() throws InterruptedException {
 		signobj.launchurl();
 		startreport("Test case 2D started");
@@ -221,7 +221,7 @@ public class AutomationScript extends BaseSeleniumTest {
 	/*
 	 * Launch App Click on FREE TRIAL icon click "accountant or bookkeeper" link
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC02E_SignupAccountantorBookKeeper() throws InterruptedException {
 		signobj.launchurl();
 		startreport("Test case 2E started");
@@ -243,7 +243,7 @@ public class AutomationScript extends BaseSeleniumTest {
 	 * xero dash board accounts report contacts settings "+"/new files
 	 * notification search ?/help
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC03_CheckAllTabs() throws Exception {
 		loginobj.launchurl();
 		Thread.sleep(5000);
@@ -301,7 +301,7 @@ public class AutomationScript extends BaseSeleniumTest {
 	/*
 	 * Launch App Login to xero Logout from xero Check for Username field
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC04_logout() throws InterruptedException {
 		loginobj.launchurl();
 		startreport("Test case 4 started");
@@ -325,7 +325,7 @@ public class AutomationScript extends BaseSeleniumTest {
 	/*
 	 * Launch App Log in Go to my Xero Add more organizations
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC08A_AddNewOrganisation() throws Exception {
 		addobj.launchurl();
 		try
@@ -358,7 +358,7 @@ public class AutomationScript extends BaseSeleniumTest {
 	/*
 	 * Log in Go to my Xero Add more organizations
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC08B_AddNewOrganisation() throws Exception {
 		addobj.launchurl();
 		try
@@ -394,7 +394,7 @@ public class AutomationScript extends BaseSeleniumTest {
 	Go to my Xero
 	Add more organizations*/
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC08C_AddNewOrganisation() throws Exception {
 		addobj.launchurl();
 		try{
@@ -437,7 +437,7 @@ public class AutomationScript extends BaseSeleniumTest {
 Log in
 Go to my Xero
 Add more organizations*/
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC08D_AddNewOrganisation() throws Exception {
 		addobj.launchurl();
 		try{
@@ -476,7 +476,7 @@ Add more organizations*/
 	}
 
 /*TC08E*/
-	@Test(enabled = false)
+	@Test(enabled =true)
 	public void TC08E_AddNewOrganisation() throws Exception {
 		addobj.launchurl();
 		try
@@ -521,7 +521,7 @@ Add more organizations*/
 	Click on Profile Button
 	Click on Upload Image*/
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC06_UploadImage() throws InterruptedException {
 		loginobj.launchurl();
 		try
@@ -564,7 +564,7 @@ Click on Repeating
 Click on See all
 
 	 */
-	@Test(enabled=false)
+	@Test(enabled=true)
 	public void TC10_Billing() throws Exception
 	{
 		loginobj.launchurl();
