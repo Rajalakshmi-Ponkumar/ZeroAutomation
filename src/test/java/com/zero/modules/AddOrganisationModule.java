@@ -1,5 +1,7 @@
 package com.zero.modules;
 
+import java.util.ArrayList;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -11,7 +13,7 @@ public class AddOrganisationModule extends BaseSeleniumTest{
 	ExcelData excelobj= new ExcelData("C:\\TrainingJAN19\\JAVAPGMS\\ZeroAutomation\\DataSheet.xlsx");
 	public void launchurl()
 	{
-		launch("https://login.xero.com/");
+		launch("https://login.xero.com");
 	}
 	public void addOrganisationlogin()
 	{
@@ -25,7 +27,11 @@ public class AddOrganisationModule extends BaseSeleniumTest{
 	{
 		WebElement app=findElement(By.xpath("//div[@class='xrh-appbutton--body']"),"App");
 		clickobj(app,"App");
-		WebElement add= findElement(By.linkText("Add a new organization"),"Add new organisation");
+		WebElement myzero=findElement(By.xpath("//a[contains(text(),'My Xero')]"),"My Zero");
+		clickobj(myzero,"My zero");
+		ArrayList<String> windows = new ArrayList<String>(driver.getWindowHandles());
+		driver.switchTo().window(windows.get(1));
+		WebElement add= findElement(By.xpath("//a[@id='ext-gen1042']"),"Add new organisation");
 		clickobj(add,"Add new Organisation");
 		Thread.sleep(5000);
 		WebElement orgname=findElement(By.xpath("//input[@id='text-1022-inputEl']"),"Organisation name");

@@ -19,7 +19,7 @@ import com.zero.datasheet.ExcelData;
 
 public class BaseSeleniumTest {
 	ExcelData excelobj= new ExcelData("C:\\TrainingJAN19\\JAVAPGMS\\ZeroAutomation\\DataSheet.xlsx");
-	static WebDriver driver;
+	public static WebDriver driver;
 	static ExtentReports report;
 	static ExtentTest Logger;
 	
@@ -41,12 +41,8 @@ public class BaseSeleniumTest {
 			System.setProperty("webdriver.chrome.driver", "Driver\\chromedriver.exe");		
 			driver=new ChromeDriver();
 		}
-		//else if (browser.equalsIgnoreCase("IE"))
-		//{
-			//System.setProperty("webdriver.ie.driver", "Driver\\IEDriverServer.exe");		
-			//driver=new InternetExplorerDriver();
-		//}
-
+		
+		
 		else
 		{
 			throw new Exception ("Browser is not correct");
@@ -66,11 +62,14 @@ public class BaseSeleniumTest {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
-	public static void startreport(String text,String reportfilename)
+	public static void initializelogger()
 	{
-
-		String path = "user.dir" +"/test-output/"+ reportfilename;
+		String path = "user.dir" +"/test-output/ExtentReport.html";
 		report = new ExtentReports(path);
+	}
+	public static void startreport(String text)
+	{
+		
 		Logger = report.startTest(text);
 	}
 
@@ -139,7 +138,7 @@ public class BaseSeleniumTest {
 	 * Created Date :21-03-3019 
 	 * Last modified date :21-03-2019
 	 */
-	public static WebElement findElement(By location, String objname) {
+	public  static WebElement findElement(By location, String objname) {
 		WebElement obj = null;
 		try {
 			obj = driver.findElement(location);
@@ -156,7 +155,7 @@ public class BaseSeleniumTest {
 	 * Created Date :21-03-3019 
 	 * Last modified date :21-03-2019
 	 */
-	public static void mouseover(WebElement element,String objname) {
+	public  static void mouseover(WebElement element,String objname) {
 		Actions actionobj = new Actions(driver);
 		if (element.isDisplayed()) {
 			actionobj.moveToElement(element).build().perform();

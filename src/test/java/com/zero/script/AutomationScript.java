@@ -3,10 +3,13 @@ package com.zero.script;
 import java.util.ArrayList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
+import com.relevantcodes.extentreports.LogStatus;
 import com.zero.modules.AddOrganisationModule;
 import com.zero.modules.LoginModule;
 import com.zero.modules.SignUpModule;
@@ -16,7 +19,11 @@ public class AutomationScript extends BaseSeleniumTest {
 	SignUpModule signobj = new SignUpModule();
 	AddOrganisationModule addobj = new AddOrganisationModule();
 	SoftAssert softassert = new SoftAssert();
-
+    @BeforeSuite
+    public static void initializeExtentreport()
+    {
+    	initializelogger();
+    }
 	@BeforeMethod
 	@Parameters("browser")
 	public void initializedriver(String browser) throws Exception {
@@ -30,7 +37,7 @@ public class AutomationScript extends BaseSeleniumTest {
 	@Test(enabled = true)
 	public void TC01_NavigatetozeroValidCredientials() throws InterruptedException {
 		loginobj.launchurl();
-		startreport("Test case 1 started", "Report1.html");
+		startreport("Test case 1 started");
 		String Un = excelobj.getdata(0, 1, 1);
 		String pwd = excelobj.getdata(0, 1, 2);
 		loginobj.login(Un, pwd);
@@ -39,7 +46,7 @@ public class AutomationScript extends BaseSeleniumTest {
 		String expected = excelobj.getdata(0, 1, 3);
 		softassert.assertEquals(actual, expected);
 		quitdriver();
-		reportclose();
+		
 	}
 
 	/*
@@ -47,10 +54,10 @@ public class AutomationScript extends BaseSeleniumTest {
 	 * button
 	 * 
 	 */
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void TC01A_NavigatetoZeroInvalidPwd() throws InterruptedException {
 		loginobj.launchurl();
-		startreport("Test case 1B started", "Report2.html");
+		startreport("Test case 1B started");
 		String Un = excelobj.getdata(0, 2, 1);
 		String pwd = excelobj.getdata(0, 2, 2);
 		loginobj.login(Un, pwd);
@@ -60,16 +67,16 @@ public class AutomationScript extends BaseSeleniumTest {
 		String expected = excelobj.getdata(0, 2, 3);
 		softassert.assertEquals(actual, expected);
 		quitdriver();
-		reportclose();
+		//reportclose();
 	}
 
 	/*
 	 * TC01C Launch App Enter User Name Enter Password Click on Log in button
 	 */
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void TC01C_NavigatetoZeroInvalidEmailId() throws InterruptedException {
 		loginobj.launchurl();
-		startreport("Test case 1C started", "Report3.html");
+		startreport("Test case 1C started");
 		String Un = excelobj.getdata(0, 3, 1);
 		String pwd = excelobj.getdata(0, 3, 2);
 		loginobj.login(Un, pwd);
@@ -86,10 +93,10 @@ public class AutomationScript extends BaseSeleniumTest {
 	/*
 	 * TCO1D Launch App Click on Forgot password Test Forgot password
 	 */
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void TC01D_NavigatetoZeroForgotPassword() throws InterruptedException {
 		loginobj.launchurl();
-		startreport("Test case 1D started", "Report4.html");
+		startreport("Test case 1D started");
 		WebElement link = findElement(By.xpath("//a[@class='forgot-password-advert']"), "Forgot Password");
 		clickobj(link, "Forgot Password ");
 		WebElement email = findElement(By.xpath("//input[@name='UserName']"), "Email Id");
@@ -111,18 +118,26 @@ public class AutomationScript extends BaseSeleniumTest {
 	 * Enter Email Address Enter Phone number Select Country from the List Box
 	 * Select Terms and policy in the check box Click Get started Button
 	 */
-	@Test(enabled = true)
-	public void TC02A_SignupFullDetails() throws InterruptedException {
+	@Test(enabled = false)
+	public void TC02A_SignupFullDetails() throws Exception {
 		signobj.launchurl();
-		startreport("Test case 2A started", "Report5.html");
+		try
+		{
+		startreport("Test case 2A started");
 		String FirName = excelobj.getdata(1, 1, 1);
 		String LasName = excelobj.getdata(1, 1, 2);
 		String EmailAdd = excelobj.getdata(1, 1, 3);
 		String PhoneNO = excelobj.getdata(1, 1, 4);
 		String Coun = excelobj.getdata(1, 1, 5);
 		signobj.signUp(FirName, LasName, EmailAdd, PhoneNO, Coun);
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			Logger.log(LogStatus.FAIL, "Error");
+		}
 		quitdriver();
-		reportclose();
+		
 	}
 
 	/*
@@ -130,10 +145,10 @@ public class AutomationScript extends BaseSeleniumTest {
 	 * any field Enter the Email address in wrong format Click the Get Started
 	 * Button without select the term and policy checkbox
 	 */
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void TC02B_Signup() throws InterruptedException {
 		signobj.launchurl();
-		startreport("Test case 2B started", "Report6.html");
+		startreport("Test case 2B started");
 		String FirName = excelobj.getdata(1, 2, 1);
 		String LasName = excelobj.getdata(1, 2, 2);
 		String EmailAdd = excelobj.getdata(1, 2, 3);
@@ -147,18 +162,18 @@ public class AutomationScript extends BaseSeleniumTest {
 		String expected = excelobj.getdata(1, 2, 6);
 		softassert.assertEquals(actual, expected);
 		quitdriver();
-		reportclose();
+	
 	}
 
 	/*
 	 * Launch App Click on FREE TRIAL icon Click the terms of use link Click the
 	 * privacy policy link
 	 */
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void TC02C_SignupDetails() throws InterruptedException {
 		ArrayList<String> windows;
 		signobj.launchurl();
-		startreport("Test case 2C started", "Report7.html");
+		startreport("Test case 2C started");
 		WebElement trial = findElement(By.linkText("Free trial"), "Free Trial ");
 		clickobj(trial, "Free Trial");
 		WebElement termsofuse = findElement(By.linkText("terms of use"), "Terms of Use");
@@ -178,16 +193,16 @@ public class AutomationScript extends BaseSeleniumTest {
 		String expected1 = "Privacy notice | Xero US";
 		softassert.assertEquals(actual1, expected1);
 		quitdriver();
-		reportclose();
+	
 	}
 
 	/*
 	 * Launch App Click on FREE TRIAL icon click "See full Offer Details" link
 	 */
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void TC02D_SignupOfferDetails() throws InterruptedException {
 		signobj.launchurl();
-		startreport("Test case 2D started", "Report8.html");
+		startreport("Test case 2D started");
 		WebElement trial = findElement(By.linkText("Free trial"), "Free Trial ");
 		clickobj(trial, "Free Trial");
 		WebElement offer = findElement(By.linkText("offer details"), "Offer Details");
@@ -199,17 +214,17 @@ public class AutomationScript extends BaseSeleniumTest {
 		String expected = "Offer details | Xero US";
 		Assert.assertEquals(actual, expected);
 		quitdriver();
-		reportclose();
+		
 
 	}
 
 	/*
 	 * Launch App Click on FREE TRIAL icon click "accountant or bookkeeper" link
 	 */
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void TC02E_SignupAccountantorBookKeeper() throws InterruptedException {
 		signobj.launchurl();
-		startreport("Test case 2E started", "Report9.html");
+		startreport("Test case 2E started");
 		WebElement trial = findElement(By.linkText("Free trial"), "Free Trial ");
 		clickobj(trial, "Free Trial");
 		WebElement acc = findElement(By.linkText("accountant or bookkeeper"), "Accountant or Bookkeeper");
@@ -219,7 +234,7 @@ public class AutomationScript extends BaseSeleniumTest {
 		String expected = "Sign up for the Xero Partner Program | Xero US";
 		softassert.assertEquals(actual, expected);
 		quitdriver();
-		reportclose();
+		
 
 	}
 
@@ -228,11 +243,13 @@ public class AutomationScript extends BaseSeleniumTest {
 	 * xero dash board accounts report contacts settings "+"/new files
 	 * notification search ?/help
 	 */
-	@Test(enabled = true)
-	public void TC03_CheckAllTabs() throws InterruptedException {
+	@Test(enabled = false)
+	public void TC03_CheckAllTabs() throws Exception {
 		loginobj.launchurl();
 		Thread.sleep(5000);
-		startreport("Test case 3 started", "Report10.html");
+		try
+		{
+		startreport("Test case 3 started");
 		String Un = excelobj.getdata(0, 1, 1);
 		String pwd = excelobj.getdata(0, 1, 2);
 		loginobj.login(Un, pwd);
@@ -270,18 +287,24 @@ public class AutomationScript extends BaseSeleniumTest {
 		WebElement search = findElement(
 				By.xpath("/html[1]/body[1]/div[1]/header[1]/div[1]/ol[2]/li[2]/button[1]/div[1]"), "Search");
 		clickobj(search, "Search");
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			Logger.log(LogStatus.FAIL, "Error");
+		}
 		quitdriver();
-		reportclose();
+	
 
 	}
 
 	/*
 	 * Launch App Login to xero Logout from xero Check for Username field
 	 */
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void TC04_logout() throws InterruptedException {
 		loginobj.launchurl();
-		startreport("Test case 4 started", "Report11.html");
+		startreport("Test case 4 started");
 		String Un = excelobj.getdata(0, 1, 1);
 		String pwd = excelobj.getdata(0, 1, 2);
 		loginobj.login(Un, pwd);
@@ -296,16 +319,18 @@ public class AutomationScript extends BaseSeleniumTest {
 				"Logout");
 		clickobj(logout, "Logout");
 		quitdriver();
-		reportclose();
+	
 	}
 
 	/*
 	 * Launch App Log in Go to my Xero Add more organizations
 	 */
 	@Test(enabled = false)
-	public void TC08A_AddNewOrganisation() throws InterruptedException {
+	public void TC08A_AddNewOrganisation() throws Exception {
 		addobj.launchurl();
-		startreport("Test case 8A started", "Report12.html");
+		try
+		{
+		startreport("Test case 8A started");
 		addobj.addOrganisationlogin();
 		String orgName = excelobj.getdata(2, 1, 1);
 		String taxctry = excelobj.getdata(2, 1, 2);
@@ -320,17 +345,25 @@ public class AutomationScript extends BaseSeleniumTest {
 		// System.out.println(actual);
 		String expected = excelobj.getdata(2, 1, 6);
 		softassert.assertEquals(actual, expected);
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			Logger.log(LogStatus.FAIL, "Error");
+		}
 		quitdriver();
-		reportclose();
+		
 	}
 
 	/*
 	 * Log in Go to my Xero Add more organizations
 	 */
 	@Test(enabled = false)
-	public void TC08B_AddNewOrganisation() throws InterruptedException {
+	public void TC08B_AddNewOrganisation() throws Exception {
 		addobj.launchurl();
-		startreport("Test case 8B started", "Report13.html");
+		try
+		{			
+		startreport("Test case 8B started");
 		addobj.addOrganisationlogin();
 		String orgName = excelobj.getdata(2, 2, 1);
 		String taxctry = excelobj.getdata(2, 2, 2);
@@ -346,8 +379,14 @@ public class AutomationScript extends BaseSeleniumTest {
 		System.out.println(actual);
 		String expected = excelobj.getdata(2, 2, 6);
 		softassert.assertEquals(actual, expected);
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			Logger.log(LogStatus.FAIL, "Error");
+		}
 		quitdriver();
-		reportclose();
+		
 
 	}
 	/*Launch App
@@ -356,9 +395,10 @@ public class AutomationScript extends BaseSeleniumTest {
 	Add more organizations*/
 	
 	@Test(enabled = false)
-	public void TC08C_AddNewOrganisation() throws InterruptedException {
+	public void TC08C_AddNewOrganisation() throws Exception {
 		addobj.launchurl();
-		startreport("Test case 8C started", "Report14.html");
+		try{
+		startreport("Test case 8C started");
 		addobj.addOrganisationlogin();
 		String orgName = excelobj.getdata(2, 1, 1);
 		String taxctry = excelobj.getdata(2, 1, 2);
@@ -383,8 +423,14 @@ public class AutomationScript extends BaseSeleniumTest {
 		entertext(zipcode,"89785","Zipcode");
 		WebElement con=findElement(By.xpath("//button[contains(text(),'Continue to Review & Pay')]"),"Submit");
 		clickobj(con,"continue to pay");
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			Logger.log(LogStatus.FAIL, "Error");
+		}
 		quitdriver();
-		reportclose();
+		
 
 	}
 	/*Launch App
@@ -392,9 +438,10 @@ Log in
 Go to my Xero
 Add more organizations*/
 	@Test(enabled = false)
-	public void TC08D_AddNewOrganisation() throws InterruptedException {
+	public void TC08D_AddNewOrganisation() throws Exception {
 		addobj.launchurl();
-		startreport("Test case 8D started", "Report15.html");
+		try{
+		startreport("Test case 8D started");
 		addobj.addOrganisationlogin();
 		String orgName = excelobj.getdata(2, 1, 1);
 		String taxctry = excelobj.getdata(2, 1, 2);
@@ -417,16 +464,24 @@ Add more organizations*/
 		entertext(zipcode,"89785","Zipcode");
 		WebElement con=findElement(By.xpath("//button[contains(text(),'Continue to Review & Pay')]"),"Submit");
 		clickobj(con,"continue to pay");
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			Logger.log(LogStatus.FAIL, "Error");
+		}
 		quitdriver();
-		reportclose();
+	
 
 	}
 
 /*TC08E*/
 	@Test(enabled = false)
-	public void TC08E_AddNewOrganisation() throws InterruptedException {
+	public void TC08E_AddNewOrganisation() throws Exception {
 		addobj.launchurl();
-		startreport("Test case 8E started", "Report16.html");
+		try
+		{
+		startreport("Test case 8E started");
 		addobj.addOrganisationlogin();
 		String orgName = excelobj.getdata(2, 1, 1);
 		String taxctry = excelobj.getdata(2, 1, 2);
@@ -451,9 +506,14 @@ Add more organizations*/
 		entertext(zipcode,"89785","Zipcode");
 		WebElement con=findElement(By.xpath("//button[contains(text(),'Continue to Review & Pay')]"),"Submit");
 		clickobj(con,"continue to pay");
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			Logger.log(LogStatus.FAIL, "Error");
+		}
 		quitdriver();
-		reportclose();
-
+		
 }
 	/*Launch XERO application
 	Login to XERO 
@@ -464,7 +524,10 @@ Add more organizations*/
 	@Test(enabled = false)
 	public void TC06_UploadImage() throws InterruptedException {
 		loginobj.launchurl();
-		startreport("Test case 6 started", "Report11.html");
+		try
+		{
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		startreport("Test case 6 started");
 		String Un = excelobj.getdata(0, 1, 1);
 		String pwd = excelobj.getdata(0, 1, 2);
 		loginobj.login(Un, pwd);
@@ -476,10 +539,80 @@ Add more organizations*/
 		Thread.sleep(5000);
 		WebElement upload=findElement(By.xpath("//div[@id='button-1041']"),"Upload Image");
 		clickobj(upload,"Upload");
-		WebElement browse=findElement(By.xpath("//input[@id='filefield-1174-button-fileInputEl']"),"Browse");
-		clickobj(browse,"Browse");
-		Thread.sleep(5000);			
+		WebElement browse=wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@id='filefield-1174-browseButtonWrap']")));
+		//clickobj(browse,"Browse");
+		browse.sendKeys("C:\\Users\\Ponkumar\\Desktop\\pic.jpeg");
+		Thread.sleep(5000);
+		}
+		catch(Exception ex)
 		
+			{
+				System.out.println(ex.getMessage());
+				Logger.log(LogStatus.FAIL, "Error");
+			}
+		
+		
+		quitdriver();		
+		
+	}
+	/*TC10
+	 * Launch Xero application
+Click on logIn Button
+Click on Accounts Button 
+Click on paid 
+Click on Repeating 
+Click on See all
+
+	 */
+	@Test(enabled=false)
+	public void TC10_Billing() throws Exception
+	{
+		loginobj.launchurl();
+		try
+		{
+		startreport("Test case 10 started");
+		String Un = excelobj.getdata(0, 1, 1);
+		String pwd = excelobj.getdata(0, 1, 2);
+		loginobj.login(Un, pwd);
+		Thread.sleep(5000);
+		WebElement businesstab=findElement(By.xpath("//button[contains(text(),'Business')]"),"Business");
+		clickobj(businesstab,"Business");
+		WebElement purchase=findElement(By.xpath("//a[@class='xrh-verticalmenuitem--body'][contains(text(),'Purchases overview')]"),"Purchase overview");
+		clickobj(purchase,"Purchase Overview");
+		String actual=driver.getTitle();
+		System.out.println(actual);
+		String expected="Xero | Purchases overview | Demo Company (US)";
+		softassert.assertEquals(actual, expected);
+		WebElement bus=findElement(By.xpath("//button[contains(text(),'Business')]"),"Business");
+		clickobj(bus,"Business");
+		WebElement bills=findElement(By.xpath("//a[contains(text(),'Bills to pay')]"),"Bills to pay");
+		clickobj(bills,"Bills to pay");
+		String actual1=driver.getTitle();
+		System.out.println(actual1);
+		String expected1="Xero | Bills | Demo Company (US)";
+		softassert.assertEquals(actual1, expected1);
+		WebElement paid=findElement(By.xpath("/html[1]/body[1]/div[2]/form[1]/div[1]/div[1]/div[1]/ul[1]/li[5]/a[1]"),"Paid Bills");
+		clickobj(paid,"Paid Bills");
+		WebElement repeated=findElement(By.xpath("//a[@href='/AccountsPayable/SearchRepeating.aspx']"),"Repeated Bills");
+		clickobj(repeated,"RepeatedBills");
+		Thread.sleep(5000);
+		WebElement all=findElement(By.xpath("/html[1]/body[1]/div[2]/form[1]/div[1]/div[1]/div[1]/ul[1]/li[1]/a[1]"),"All Bills");
+		clickobj(all,"All Bills");
+		
+		}
+		catch(Exception ex)
+		
+		{
+			System.out.println(ex.getMessage());
+			Logger.log(LogStatus.FAIL, "Error");
+		}
+		
+	quitdriver();
+	}
+	@AfterSuite
+	public void closereport()
+	{
+		reportclose();
 	}
 	
 	

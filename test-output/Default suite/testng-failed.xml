@@ -6,8 +6,10 @@
     <classes>
       <class name="com.zero.script.AutomationScript">
         <methods>
+          <include name="TC06_UploadImage"/>
+          <include name="initializeExtentreport"/>
           <include name="initializedriver"/>
-          <include name="TC08C_AddNewOrganisation"/>
+          <include name="closereport"/>
         </methods>
       </class> <!-- com.zero.script.AutomationScript -->
     </classes>
